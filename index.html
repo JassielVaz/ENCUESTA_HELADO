@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Helado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Encuesta sobre Helados</h1>
+        
+        <p>¿Te gusta el helado?</p>
+        <button @click="respuesta = 'sí'">Sí</button>
+        <button @click="respuesta = 'no'">No</button>
+
+        <div v-if="respuesta === 'sí'">
+            <h2>¡Genial!:</h2>
+            <label for="sabor">¿Cuál es tu sabor favorito?</label>
+            <input type="text" v-model="sabor" id="sabor" />
+
+            <label for="tipo">¿Vasito o cono?</label>
+            <select v-model="tipo" id="tipo">
+                <option value="vasito">Vasito</option>
+                <option value="cono">Cono</option>
+            </select>
+
+            <label for="bolitas">¿Cuántas bolitas eliges?</label>
+            <input type="number" v-model="bolitas" id="bolitas" min="1" />
+
+            <button @click="guardarHelado">Guardar</button>
+        </div>
+
+        <div v-else-if="respuesta === 'no'">
+            <h2>Entendido, que pena tu caso.</h2>
+        </div>
+<div id="obvio">
+        <h2>Lista de Helados</h2>
+        <ul>
+            <li v-for="(helado, index) in listaHelados" :key="index">
+                Sabor: {{ helado.sabor }}, Tipo: {{ helado.tipo }}, Bolitas: {{ helado.bolitas }}
+            </li>
+        </ul>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="js.js"></script>
+</body>
+</html>
